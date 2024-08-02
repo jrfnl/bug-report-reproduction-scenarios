@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd"
+    backupGlobals="true"
+    bootstrap="vendor/autoload.php"
+    beStrictAboutOutputDuringTests="true"
+    beStrictAboutTestsThatDoNotTestAnything="true"
+    colors="true"
+    cacheDirectory=".cache/phpcs.cache"
+    displayDetailsOnTestsThatTriggerErrors="true"
+    displayDetailsOnTestsThatTriggerWarnings="true"
+    displayDetailsOnTestsThatTriggerNotices="true"
+    displayDetailsOnTestsThatTriggerDeprecations="true"
+    failOnWarning="true"
+    >
+  <testsuites>
+    <testsuite name="Bug Report Scenarios">
+      <directory suffix="Test.php">./tests/</directory>
+    </testsuite>
+  </testsuites>
+
+  <extensions>
+    <bootstrap class="Jrf\PHPUnit\Scenario\Deprecation\DeprecationExtension"/>
+  </extensions>
+
+  <source>
+    <include>
+      <directory>src</directory>
+    </include>
+  </source>
+</phpunit>

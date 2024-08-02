@@ -3,8 +3,13 @@
 namespace Jrf\PHPUnit\Scenario;
 
 class Foo {
-	function throwDeprecation() {
-		trigger_error('deprecation', E_USER_DEPRECATED);
+	private $depCount = 0;
+	function throwDeprecation($message = '') {
+		if ('' === $message)
+		{
+			$message = 'Passing an empty string message is deprecated in ' . __METHOD__;
+		}
+		trigger_error($message, E_USER_DEPRECATED);
 		return true;
 	}
 
