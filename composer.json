@@ -1,0 +1,21 @@
+{
+    "name": "jrfnl/phpunit-5884",
+    "description": "Testing",
+    "license": "MIT",
+    "require": {
+        "php": "^8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.3 || ^10.1 || ^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jrf\\PHPUnit1011\\Example\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Jrf\\PHPUnit1011\\Example\\Tests\\": "tests/"
+        }
+    }
+}
