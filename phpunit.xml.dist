@@ -21,7 +21,7 @@
         </testsuite>
     </testsuites>
 
-    <source ignoreSelfDeprecations="true" ignoreDirectDeprecations="true" ignoreIndirectDeprecations="true">
+    <source>
         <include>
             <directory suffix=".php">./src/</directory>
         </include>
