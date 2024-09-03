@@ -7,7 +7,7 @@ use Jrf\PHPUnit1011\Example\Foo;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-#[@CoversClass(Foo::class)]
+#[\HAS_COVERS_TRAIT ? CoversTrait(Foo::class) : CoversClass(Foo::class)]
 final class FooTest extends TestCase
 {
     use Foo;
