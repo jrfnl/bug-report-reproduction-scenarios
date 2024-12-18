@@ -59,3 +59,5 @@ jobs:
           php-version: ${{ matrix.php_version }}
           ini-values: zend.assertions=1, error_reporting=-1, display_errors=On
           coverage: none
+        env:
+          update: true
