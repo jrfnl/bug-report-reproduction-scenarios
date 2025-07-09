@@ -1,0 +1,19 @@
+{
+    "name": "jrfnl/composer-issue-12471",
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.13",
+        "dealerdirect/phpcodesniffer-composer-installer": "*"
+    },
+    "repositories": [
+        {
+            "type": "artifact",
+            "url": "./artifact/"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "lock": false
+    }
+}
