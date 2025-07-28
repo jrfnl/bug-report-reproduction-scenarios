@@ -1,0 +1,28 @@
+name: List repos
+
+on:
+  push:
+
+jobs:
+  list-repos:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        user: ['jrfnl', 'PHPCompatibility', 'RequestsPHP', 'php-parallel-lint', 'PHPCSStandards']
+
+    name: "List repos created before April 2024 for user ${{ matrix.user }}"
+
+    steps:
+      - name: List repos
+        shell: bash
+        run: |
+          gh repo list ${{ matrix.user }} --source --limit 10000 --json name,url --jq '.[] | .name' | while read repo; do
+            created_at=$(gh api repos/${{ matrix.user }}/$repo --jq .created_at)
+            if [[ "$created_at" < "2024-04" ]]; then
+              echo "$repo"
+            fi
+          done
+        env:
+          GH_TOKEN: ${{ github.token }}
