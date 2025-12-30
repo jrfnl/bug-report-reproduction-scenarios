@@ -1,0 +1,42 @@
+name: Test
+
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: "${{ matrix.os }}"
+
+    strategy:
+      matrix:
+        composer:
+          - 'v2'
+          - 'snapshot'
+        os:
+          - 'ubuntu-latest'
+          - 'windows-latest'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 'latest'
+          ini-values: zend.assertions=1, error_reporting=-1, display_errors=On, display_startup_errors=On
+          tools: "composer:${{ matrix.composer }}"
+          coverage: none
+
+      - name: Confirm Composer version
+        run: composer --version
+
+      - name: Composer diagnose
+        continue-on-error: true
+        run: composer diagnose
+
+      - name: Composer install
+        run: composer --no-interaction install --no-plugins -vvv --no-ansi
+
+      - name: Composer run script
+        run: composer --no-interaction run-script post-install-cmd --no-plugins -vvv --no-ansi
