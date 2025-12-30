@@ -1,0 +1,34 @@
+name: Test Bump
+
+on:
+  push:
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 'latest'
+          ini-values: zend.assertions=1, error_reporting=-1, display_errors=On
+          coverage: none
+
+      - name: Composer install
+        run: composer install
+
+      - name: Composer bump dry run
+        if: ${{ always() }}
+        run: composer bump --dev-only --dry-run -vvv
+
+      - name: Composer bump
+        if: ${{ always() }}
+        run: composer bump --dev-only -vvv
+
+      - name: Git diff
+        if: ${{ always() }}
+        run: git diff

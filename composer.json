@@ -1,0 +1,9 @@
+{
+    "name": "jrfnl/composer-issue-12697",
+    "require-dev": {
+        "phpunit/phpunit": "^8.0 || ^9.6.25 || ^10.2"
+    },
+    "config": {
+        "lock": false
+    }
+}
